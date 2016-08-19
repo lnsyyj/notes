@@ -52,11 +52,11 @@ Swift提供一种叫container的东西，我们与术语bucket交替使用。有
 
 user ID在RGW中是一个字符串，通常实际的user name来自user credentials而不是一个哈希或映射标识符。
 
-当访问一个user's data时，用户记录从.users.uid pool中的一个<user_id> object中加载。
+当访问一个user's data时，用户记录从.users.uid pool中的一个`<user_id>` object中加载。
 
 在pool .rgw中bucket names被直接表示。为了获取所谓的marker（它作为一个bucket的ID ），bucket记录被加载。
 
-该对象位于pool .rgw.buckets中。object name是<marker>_<key>，例如default.7593.4_image.png，这里的marker是default.7593.4，key是image.png。由于这些连在一起的名称不解析，只向下传递到RADOS，分离器的选择并不重要并且不会引起歧义。出于同样的原因，斜杠允许出现在object names中（keys）。
+该对象位于pool .rgw.buckets中。object name是`<marker>_<key>`，例如default.7593.4_image.png，这里的marker是default.7593.4，key是image.png。由于这些连在一起的名称不解析，只向下传递到RADOS，分离器的选择并不重要并且不会引起歧义。出于同样的原因，斜杠允许出现在object names中（keys）。
 
 另外，也可以创建多个data pools，并使不同user的buckets被默认创建在不同的rados pools中，提供必要的扩展。这些layout和pools name被policy设置所控制。【3】
 
