@@ -2,6 +2,8 @@
 
 本文只做了ceph官方文档的简单翻译，由于英语水平有限，我也不想误导大家。如有翻译问题或者错误请大家指正，微信yjtcok。
 
+原文在，http://docs.ceph.com/docs/master/radosgw/layout/
+
 **INTRODUCTION（介绍）**
 
 Swift提供一种叫container的东西，我们与术语bucket交替使用。有人可能会说RGW的buckets实现了Swift的containers。
