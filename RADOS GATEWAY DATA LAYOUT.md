@@ -32,15 +32,15 @@ Swift提供一种叫container的东西，我们与术语bucket交替使用。有
 	user：保存user information
 	bucket：保存bucket name和bucket instance id之间的映射
 	bucket.instance：保存bucket instance information【2】
-	每个metadata entry被保存在一个单独rados object中，请参见下面
-	需要注意的是，当列出一个metadata section，我们做了一个pool上的rados pgls操作。
+每个metadata entry被保存在一个单独rados object中，请参见下面
+
+需要注意的是，当列出一个metadata section，我们做了一个pool上的rados pgls操作。
 
 > Bucket Index
 
-这是一个不同类型的metadata，并分开存放。这个bucket index保存了一个key-value映射，在rados object中。默认情况下每个bucket保存一个单独的rados object，但是它可能因为Hammer版本shard，映射在多个rados objects上。这个映射自身保存在omap中，关联每个rados object。每个omap的key是objects的名字，value保存object的basic metadata —— 当list bucket时，显示metadata。此外，每个omap保存一个header，并且header中保存bucket accounting metadata（objects数量，总size，等）
+这是一种不同类型的metadata，并单独保存。bucket index保存了一个key-value映射，在rados object中。默认情况下每个bucket是一个单独的rados object，但是可能因为Hammer版本的shard功能，映射在多个rados objects上。这个映射自身保存在omap中，关联每个rados object。每个omap的key是objects的名字，value保存object的basic metadata —— 当list bucket时，显示metadata。此外，每个omap保存一个header，并且header中保存bucket accounting metadata（objects数量，总size，等）
 
 请注意，我们在bucket index中也保存一些其他信息，它保存在其他关键的namespaces。我们可以保存bucket index log在那，objects version有许多信息，我们保存在其他key中。
-
 
 > Data
 
